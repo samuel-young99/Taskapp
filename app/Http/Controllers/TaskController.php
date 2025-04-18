@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\TaskController;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -13,8 +13,8 @@ class TaskController extends Controller
      */
     public function index()
     { 
-        $tasks = Task::all();
-        return view('home');
+       $tasks = Task::all();
+        return view('tasks.index',compact('tasks'));
     }
 
     /**
@@ -22,7 +22,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.create',compact('tasks'));
     }
 
     /**
@@ -30,7 +30,11 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255'
+        ]);
+        Task::create($request->all());
+        return redirect()-> route('index')->with('success', 'Todo created successful');
     }
 
     /**
@@ -38,7 +42,7 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('tasks.show', compact('tasks'));
     }
 
     /**
@@ -46,22 +50,28 @@ class TaskController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('tasks.edit', compact('tasks'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Task $task)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255'
+        ]);
+        $task-> update($request->all());
+        return redirect()-> route('index')->with('success', 'Todo updated successful');
+    
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Task $task)
     {
-        //
+        $task-> delete();
+        return redirect()-> route('index')->with('success', 'Todo deleted successful');   
     }
 }
