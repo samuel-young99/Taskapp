@@ -3,7 +3,7 @@
 @section('content')
     <div class="row mt-5">
         <div class="col-12">
-            <h1>Edit task</h1>
+            <h1>Edit Task</h1>
             <form action="{{ route('tasks.update', $task->id) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -24,5 +24,3 @@
         </div>
     </div>
 @endsection
-@extends('layouts.app')
- 

@@ -8,10 +8,10 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('tasks.index') }}">task App</a>
+            <a class="navbar-brand" href="{{ route('tasks.index') }}">Task App</a>
             <div class="navbar-nav">
-                <a class="nav-link" href="{{ route('tasks.index') }}">tasks</a>
-                <a class="nav-link" href="{{ route('tasks.create') }}">Add task</a>
+                <a class="nav-link" href="{{ route('tasks.index') }}">Tasks</a>
+                <a class="nav-link" href="{{ route('tasks.create') }}">Add Task</a>
             </div>
         </div>
     </nav>

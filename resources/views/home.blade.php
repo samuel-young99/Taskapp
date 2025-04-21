@@ -3,8 +3,8 @@
 @section('content')
     <div class="row mt-5">
         <div class="col-12">
-            <h1>task List</h1>
-            <a href="{{ route('tasks.create') }}" class="btn btn-primary mb-3">Add task</a>
+            <h1>Task List</h1>
+            <a href="{{ route('tasks.create') }}" class="btn btn-primary mb-3">Add Task</a>
             @if(session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}

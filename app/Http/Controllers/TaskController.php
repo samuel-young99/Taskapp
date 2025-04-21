@@ -22,7 +22,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.create',compact('tasks'));
+        return view('tasks.create');
     }
 
     /**
@@ -33,36 +33,40 @@ class TaskController extends Controller
         $request->validate([
             'title' => 'required|max:255'
         ]);
-        Task::create($request->all());
-        return redirect()-> route('index')->with('success', 'Todo created successful');
+        $data = $request->all();
+        $data['completed'] = $request->has('completed');
+        Task::create($data);
+        return redirect()-> route('tasks.index')->with('success', 'Todo created successful');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(task $task)
     {
-        return view('tasks.show', compact('tasks'));
+        return view('tasks.show', compact('task'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(task $task)
     {
-        return view('tasks.edit', compact('tasks'));
+        return view('tasks.edit', compact('task'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, task $task)
     {
         $request->validate([
             'title' => 'required|max:255'
         ]);
-        $task-> update($request->all());
-        return redirect()-> route('index')->with('success', 'Todo updated successful');
+        $data = $request->all();
+        $data['completed'] = $request->has('completed');
+        $task-> update($data);
+        return redirect()-> route('tasks.index')->with('success', 'Todo updated successful');
     
     }
 
@@ -72,6 +76,6 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task-> delete();
-        return redirect()-> route('index')->with('success', 'Todo deleted successful');   
+        return redirect()-> route('tasks.index')->with('success', 'Todo deleted successful');   
     }
 }
