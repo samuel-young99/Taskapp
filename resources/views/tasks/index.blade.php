@@ -26,7 +26,7 @@
                         <td>{{ $task->description }}</td>
                         <td>{{ $task->completed ? 'Completed' : 'Pending' }}</td>
                         <td>
-                            <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-info">View</a>
+                            <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-primary">View</a>
                             <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning">Edit</a>
                             <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display:inline">
                                 @csrf

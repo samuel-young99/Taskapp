@@ -12,6 +12,8 @@
             <div class="navbar-nav">
                 <a class="nav-link" href="{{ route('tasks.index') }}">Tasks</a>
                 <a class="nav-link" href="{{ route('tasks.create') }}">Add Task</a>
+                <a class="nav-link" href="{{ route('weather.index') }}">Weather</a>
+                
             </div>
         </div>
     </nav>
